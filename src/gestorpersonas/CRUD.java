@@ -4,6 +4,7 @@
  */
 package gestorpersonas;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -12,9 +13,9 @@ import java.util.function.Predicate;
  * @author scortes
  */
 public interface CRUD<T> {
-    public void agregar(T objeto);
-    public List<T> listar();
-    public List<T> buscarPorCondicion(Predicate<T> filtro);
-    public void actualizar(T objeto);
-    public void eliminar(int id);
+    public boolean agregar(T objeto);
+    public ArrayList<T> listar();
+    public ArrayList<T> buscarPorCondicion(Predicate<T> filtro);
+    public boolean actualizar(T objeto);
+    public boolean eliminar(int id);
 }

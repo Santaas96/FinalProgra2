@@ -14,6 +14,9 @@ public class Vendedor extends Persona {
 
     public Vendedor(String cuit, double facturacion, int id, String nombre, String apellido, int edad, SituacionFiscal situacionFiscal) {
         super(id, nombre, apellido, edad, situacionFiscal);
+        
+        if(cuit.contains("/")) throw new IllegalArgumentException("No puedes ingresar el caracter '/' en cuit");
+
         this.cuit = cuit;
         this.facturacion = facturacion;
     }

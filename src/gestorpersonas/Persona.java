@@ -16,6 +16,8 @@ public abstract class Persona implements Contribuyente {
     private SituacionFiscal situacionFiscal;
 
     public Persona(int id, String nombre, String apellido, int edad, SituacionFiscal situacionFiscal) {
+        if(nombre.contains("/") || apellido.contains("/")) throw new IllegalArgumentException("No puedes ingresar el caracter '/' en nombre o apellido");
+        
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;

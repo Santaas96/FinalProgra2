@@ -4,6 +4,7 @@
  */
 package gestorpersonas;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -12,7 +13,7 @@ import java.util.function.Predicate;
  * @author scortes
  */
 public interface Repositorio<T> {
-    public void guardar(List<T> lista);
-    public List<T> cargar(String ruta);
-    public void exportarFiltrado(List<T> lista, Predicate<T> filtro, String ruta);
+    public void guardar(ArrayList<T> lista, String ruta);
+    public ArrayList<T> cargar(String ruta);
+    public void exportarFiltrado(ArrayList<T> lista, Predicate<T> filtro, String ruta);
 }
