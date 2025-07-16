@@ -33,8 +33,7 @@ public class GestionPersonas implements CRUD<Persona> {
             if (p.getId() == persona.getId()){
                 System.out.println("Ya existe persona con id: " + persona.getId());
                 yaExiste = true;
-            }
-            if (p.getNombre().toLowerCase().equals(persona.getNombre().toLowerCase()) 
+            } else if (p.getNombre().toLowerCase().equals(persona.getNombre().toLowerCase()) 
                     && p.getApellido().toLowerCase().equals(persona.getApellido().toLowerCase())
             ){
                 System.out.println("Ya existe persona con ese nombre y apellido: " + persona.getNombre() + " " + persona.getApellido());
@@ -88,7 +87,7 @@ public class GestionPersonas implements CRUD<Persona> {
         return false;
     };
     
-    public void guardarPersonas(ArrayList<Persona> lista){
+    public void guardarPersonas(){
         repositorioPersonas.guardar(lista, rutaTxtGenerica);
     };
     

@@ -10,7 +10,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Predicate;
 
 /**
@@ -25,7 +24,7 @@ public class RepositorioTXT implements Repositorio<Persona> {
                 String nuevaLinea = "";
                 
                 if (v instanceof Empleado emp) {
-                    nuevaLinea = String.format("Empleado/%d/%s/%s/%d/%s/%d/%d",
+                    nuevaLinea = String.format("Empleado/%d/%s/%s/%d/%s/%d/%.2f",
                         emp.getId(), 
                         emp.getNombre(), 
                         emp.getApellido(), 
@@ -35,7 +34,7 @@ public class RepositorioTXT implements Repositorio<Persona> {
                         emp.getSalario());
                     
                 } else if (v instanceof Estudiante est) {
-                    nuevaLinea = String.format("Estudiante/%d/%s/%s/%d/%s/%d/%d",
+                    nuevaLinea = String.format("Estudiante/%d/%s/%s/%d/%s/%d/%.2f",
                         est.getId(), 
                         est.getNombre(), 
                         est.getApellido(), 
@@ -45,7 +44,7 @@ public class RepositorioTXT implements Repositorio<Persona> {
                         est.getBeca());
                     
                 } else if (v instanceof Vendedor vend) {
-                    nuevaLinea = String.format("Vendedor/%d/%s/%s/%d/%s/%s/%d",
+                    nuevaLinea = String.format("Vendedor/%d/%s/%s/%d/%s/%s/%.2f",
                         vend.getId(), 
                         vend.getNombre(), 
                         vend.getApellido(), 
@@ -61,7 +60,7 @@ public class RepositorioTXT implements Repositorio<Persona> {
             System.out.println("Se guardo la informacion correctamente en la ruta: " + ruta);
             
         } catch (IOException e) {
-            System.out.println("Error al guardar archivo txt en la ruta " + ruta + ": " + e.getMessage());
+            System.out.println("Error al guardar archivo txt en la ruta " + ruta + ": " + e);
         }
     };
     
@@ -72,6 +71,7 @@ public class RepositorioTXT implements Repositorio<Persona> {
             String linea;
             while ((linea = reader.readLine()) != null) {
                 String[] datos = linea.split("/");
+                if(datos.length < 1) break;
                 
                 String tipo = datos[0];
                 int id = Integer.parseInt(datos[1]);
@@ -83,7 +83,7 @@ public class RepositorioTXT implements Repositorio<Persona> {
                 switch (tipo) {
                     case "Empleado":
                         int legajo = Integer.parseInt(datos[6]);
-                        double salario = Integer.parseInt(datos[7]);
+                        double salario = Double.parseDouble(datos[7].replace(",", "."));
                         
                         listaACargar.add(
                                 new Empleado(
@@ -101,7 +101,7 @@ public class RepositorioTXT implements Repositorio<Persona> {
                         
                     case "Estudiante":
                         int matricula = Integer.parseInt(datos[6]);
-                        double beca = Integer.parseInt(datos[7]);
+                        double beca = Double.parseDouble(datos[7].replace(",", "."));
                         
                         listaACargar.add(
                                 new Estudiante(
@@ -119,7 +119,7 @@ public class RepositorioTXT implements Repositorio<Persona> {
                         
                     case "Vendedor":
                         String cuit = datos[6];
-                        double facturacion = Integer.parseInt(datos[7]);
+                        double facturacion = Double.parseDouble(datos[7].replace(",", "."));
                         
                         listaACargar.add(
                                 new Vendedor(
@@ -143,7 +143,7 @@ public class RepositorioTXT implements Repositorio<Persona> {
             System.out.println("Se cargo la informacion correctamente desde la ruta: " + ruta);
             
         } catch (IOException | IllegalArgumentException e) {
-            System.out.println("Error al cargar archivo txt desde la ruta " + ruta + ": " + e.getMessage());
+            System.out.println("Error al cargar archivo txt desde la ruta " + ruta + ": " + e);
         }
 
         return listaACargar;
@@ -163,7 +163,7 @@ public class RepositorioTXT implements Repositorio<Persona> {
             System.out.println("Se exportaron los datos filtrados correctamente en la ruta: " + ruta);
             
         } catch (IOException e) {
-            System.out.println("Error al exportar archivo en la ruta " + ruta + ": " + e.getMessage());
+            System.out.println("Error al exportar archivo en la ruta " + ruta + ": " + e);
         }
     };
 }
