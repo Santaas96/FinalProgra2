@@ -153,7 +153,6 @@ public class RepositorioTXT implements Repositorio<Persona> {
         try (PrintWriter writer = new PrintWriter(new FileWriter(ruta))) {
             writer.println("EXPORTADO DE PERSONAS FILTRADAS");
             writer.println(" ");
-            writer.println(" ");
             
             lista
                 .stream()

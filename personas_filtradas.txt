@@ -1,0 +1,3 @@
+EXPORTADO DE PERSONAS FILTRADAS
+ 
+Persona{id=6, nombre=Ramiro, apellido=Galvan, edad=34, situacionFiscal=RESPONSABLE_INSCRIPTO} - Vendedor{cuit=20534534534004, facturacion=8300000.0}
